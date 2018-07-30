@@ -496,6 +496,13 @@ exports[`else-if.hbs - glimmer-verify 1`] = `
 {{/if}}
 `;
 
+exports[`expressions.hbs - glimmer-verify 1`] = `
+{{collection.[0]}}
+{{component path=collection.[0]}}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+{{collection.[0]}}{{component path=collection.[0]}}
+`;
+
 exports[`literals.hbs - glimmer-verify 1`] = `
 {{mustache true}}
 {{mustache 5}}

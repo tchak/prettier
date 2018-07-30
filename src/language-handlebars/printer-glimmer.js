@@ -240,7 +240,7 @@ function print(path, options, print) {
       return concat(["{{!", dashes, n.value, dashes, "}}"]);
     }
     case "PathExpression": {
-      return n.original;
+      return escapePath(n.original);
     }
     case "BooleanLiteral": {
       return String(n.value);
@@ -268,7 +268,24 @@ function print(path, options, print) {
 }
 
 function printPath(path, print) {
-  return path.call(print, "path");
+  return escapePath(path.call(print, "path"));
+}
+
+function escapePath(path) {
+  if (!path) {
+    return path;
+  }
+  return path
+    .split(".")
+    .map(escapeArrayPath)
+    .join(".");
+}
+
+function escapeArrayPath(path) {
+  if (path.match(/^[0-9]*$/)) {
+    return `[${path}]`;
+  }
+  return path;
 }
 
 function getParams(path, print) {
